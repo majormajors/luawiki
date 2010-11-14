@@ -5,13 +5,6 @@ local env = luasql.mysql()
 
 local wiki = orbit.new()
 
--- wiki.config = {
---   database = {
---     driver = "mysql",
---     connection = { "luawiki", "root", "" }
---   }
--- }
-
 wiki.mapper = {
   default = true,
   logging = true,

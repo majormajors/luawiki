@@ -51,8 +51,11 @@ end
 wiki:dispatch_post(wiki.create, "/pages")
 
 function wiki.layout(inner_html)
-  return html {
-    head { title "waf" },
+  return "<!DOCTYPE html>\n" .. html {
+    head {
+      title("waf"),
+      [[<link rel="stylesheet" href="/style.css" />]]
+    },
     body { inner_html }
   }
 end

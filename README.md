@@ -1,4 +1,5 @@
 # Dependencies
+* lua-discount
 * orbit
 * luasql-mysql
 * cosmo

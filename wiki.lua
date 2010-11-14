@@ -19,7 +19,7 @@ end, "/")
 
 wiki:dispatch_get(function(web, filename)
   return wiki:serve_static(web, "public" .. filename)
-end, "/.+%.css", "/.+%.jpg", "/.+%.png", "/.+%.gif")
+end, "/.+%.css", "/.+%.jpg", "/.+%.png", "/.+%.gif", "/.+%.js")
 
 function wiki.index(web)
   local page_list = wiki.pages:find_all()

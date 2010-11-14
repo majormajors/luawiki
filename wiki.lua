@@ -151,7 +151,7 @@ wiki.render_show_revision = cosmo.compile[[
 
 wiki.render_new = cosmo.compile[[
   <form action="/pages" method="post">
-  <label>Title: <input name="title" /></label>
+  <label>Title: <input name="title" /></label><br />
   Body:<br />
   <textarea name="body"></textarea>
   <input type="submit" />
@@ -160,7 +160,7 @@ wiki.render_new = cosmo.compile[[
 
 wiki.render_edit = cosmo.compile[[
   <form action="/pages/$(page.id)" method="post">
-  <label>Title: <input name="title" value="$(page.title)" /></label>
+  <label>Title: <input name="title" value="$(page.title)" /></label><br />
   Body:<br />
   <textarea name="body">$(page:current_revision().body)</textarea>
   <input type="submit" />

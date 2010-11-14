@@ -43,7 +43,7 @@ CREATE TABLE `revisions` (
   `page_id` int(11) NOT NULL,
   `body` text NOT NULL,
   `created_at` datetime NOT NULL,
-  `host` varchar(255) NOT NULL,
+  `host` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -57,4 +57,4 @@ CREATE TABLE `revisions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-11-14 16:00:51
+-- Dump completed on 2010-11-14 17:20:05

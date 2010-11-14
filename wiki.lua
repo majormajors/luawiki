@@ -50,6 +50,34 @@ end
 
 wiki:dispatch_post(wiki.create, "/pages")
 
+function wiki.edit(web, page_id)
+  local page = wiki.pages:find(tonumber(page_id))
+  return wiki.layout(wiki.render_edit({page = page}))
+end
+
+wiki:dispatch_get(wiki.edit, "/pages/(%d+)/edit")
+
+function wiki.update(web, page_id)
+  local page =  wiki.pages:find(tonumber(page_id))
+  for k,v in pairs(web.POST) do
+    if k ~= "id" then
+      page[k] = v
+    end
+  end
+  page:save()
+  return web:redirect("/pages")
+end
+
+wiki:dispatch_post(wiki.update, "/pages/(%d+)")
+
+function wiki.delete(web, page_id)
+  local page = wiki.pages:find(tonumber(page_id))
+  page:delete()
+  return web:redirect("/pages")
+end
+
+wiki:dispatch_post(wiki.delete, "/pages/(%d+)/delete")
+
 function wiki.layout(inner_html)
   return "<!DOCTYPE html>\n" .. html {
     head {
@@ -71,12 +99,23 @@ wiki.render_index = cosmo.compile[[
 ]]
 
 wiki.render_show = cosmo.compile[[
-  Page id $(page.id) has the title "$(page.title)".
+  Page id $(page.id) has the title "$(page.title)".<br /><br />
+  <a href="/pages/$(page.id)/edit">Edit page</a>
+  <form action="/pages/$(page.id)/delete" method="post">
+  <input type="submit" value="Delete" />
+  </form>
 ]]
 
 wiki.render_new = cosmo.compile[[
   <form action="/pages" method="post">
   <label>Title: <input name="title" /></label>
+  <input type="submit" />
+  </form>
+]]
+
+wiki.render_edit = cosmo.compile[[
+  <form action="/pages/$(page.id)" method="post">
+  <label>Title: <input name="title" value="$(page.title)" /></label>
   <input type="submit" />
   </form>
 ]]

@@ -4,4 +4,4 @@
 * cosmo
 
 # Run
-  orbit wiki.lua
+`orbit wiki.lua`

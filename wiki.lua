@@ -1,8 +1,10 @@
+package.path = "./?;./?.lua;" .. package.path
+config = require("config")
 discount = require("discount")
 local orbit = require("orbit")
 local cosmo = require("cosmo")
-local luasql = require("luasql.mysql")
-local env = luasql.mysql()
+local luasql = require("luasql." .. config.db.driver)
+local env = luasql[config.db.driver]()
 
 function escape_html(str)
   return str:gsub("<","&lt;"):gsub(">","&gt;")
@@ -13,7 +15,7 @@ local wiki = orbit.new()
 wiki.mapper = {
   default = true,
   logging = true,
-  conn = env:connect("luawiki", "root")
+  conn = env:connect(config.db.database, config.db.username, config.db.password, config.db.host, config.db.port)
 }
 
 wiki.pages = wiki:model("pages")

@@ -4,7 +4,7 @@ local cosmo = require("cosmo")
 local luasql = require("luasql.mysql")
 local env = luasql.mysql()
 
-local function escape_html(str)
+function escape_html(str)
   return str:gsub("<","&lt;"):gsub(">","&gt;")
 end
 
